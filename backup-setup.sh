@@ -35,6 +35,8 @@ rm -rf "${TMP_KEY}"
 { crontab -l 2>/dev/null || true; } | grep -v "/root/scripts/backup.sh" | \
 { cat; echo "0 0 * * * /root/scripts/backup.sh"; } | crontab -
 
+mkdir -p /root/scripts
+
 # Generate backup.sh
 BACKUP_CALLS=""
 for arg in "$@"; do
