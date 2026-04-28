@@ -38,18 +38,17 @@ Nightly backup script installed by `backup-setup.sh` (template only — the setu
 
 ## Setup
 
+Run directly on the server as root:
+
 ```bash
-# 1. Clone the repo on your workstation
-git clone https://github.com/darklifeform/server-backup-syno.git
-cd server-backup-syno
+# 1. Download and run the setup script (replace with your actual DB names)
+mkdir -p /root/scripts && \
+wget -qO /root/scripts/backup-setup.sh \
+  https://raw.githubusercontent.com/darklifeform/server-backup-syno/main/backup-setup.sh && \
+chmod +x /root/scripts/backup-setup.sh && \
+bash /root/scripts/backup-setup.sh mydb:"My Database"
 
-# 2. Copy setup script to the server
-scp backup-setup.sh root@<server>:/root/scripts/
-
-# 3. Run setup on the server (replace with your actual DB names)
-ssh root@<server> 'bash /root/scripts/backup-setup.sh mydb:"My Database"'
-
-# 4. Save the printed private key for the backupuser SSH account
+# 2. Save the printed private key for the backupuser SSH account
 ```
 
 ## Backup location
