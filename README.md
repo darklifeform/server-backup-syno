@@ -21,7 +21,7 @@ sudo bash backup-setup.sh db1:"Label 1" db2:"Label 2"
 
 ### `backup.sh`
 
-Nightly backup script installed by `backup-setup.sh` (template only — the setup script generates the real version with your DB names embedded).
+Reference only — not meant to be run directly. `backup-setup.sh` generates the real version at `/root/scripts/backup.sh` with your DB names embedded.
 
 - Dumps each database with `--single-transaction` (safe for InnoDB under load)
 - Compresses with `gzip -6` to `YYYYMMDD_HHMM_<db>.sql.gz`
