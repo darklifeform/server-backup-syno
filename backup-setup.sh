@@ -7,7 +7,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 groupadd -f backups
-useradd -r -m -d /home/backupuser -s /bin/bash -g backups backupuser
+id backupuser &>/dev/null || useradd -r -m -d /home/backupuser -s /bin/bash -g backups backupuser
 
 mkdir -p /var/backups/db-backups
 chown root:backups /var/backups/db-backups
@@ -32,8 +32,7 @@ echo "================================================"
 
 rm -rf "${TMP_KEY}"
 
-{ crontab -l 2>/dev/null || true; } | grep -v "/root/scripts/backup.sh" | \
-{ cat; echo "0 0 * * * /root/scripts/backup.sh"; } | crontab -
+{ crontab -l 2>/dev/null | grep -v "/root/scripts/backup.sh" || true; echo "0 0 * * * /root/scripts/backup.sh"; } | crontab -
 
 mkdir -p /root/scripts
 
